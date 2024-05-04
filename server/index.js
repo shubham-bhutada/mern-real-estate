@@ -22,7 +22,7 @@ mongoose
   });
 
 //middleware routes
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 
 //error middleware
 app.use((err, req, res, next) => {
