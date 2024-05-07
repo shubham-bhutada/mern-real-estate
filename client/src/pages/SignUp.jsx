@@ -51,6 +51,7 @@ const SignUp = () => {
           placeholder="Username"
           className="border p-3 rounded-lg outline-none"
           id="username"
+          required
           onChange={handleChange}
         />
         <input
@@ -58,6 +59,7 @@ const SignUp = () => {
           placeholder="Email"
           className="border p-3 rounded-lg outline-none"
           id="email"
+          required
           onChange={handleChange}
         />
         <input
@@ -65,6 +67,7 @@ const SignUp = () => {
           placeholder="Password"
           className="border p-3 rounded-lg outline-none"
           id="password"
+          required
           onChange={handleChange}
         />
         <button

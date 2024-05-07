@@ -54,6 +54,7 @@ const SignIn = () => {
           placeholder="Email"
           className="border p-3 rounded-lg outline-none"
           id="email"
+          required
           onChange={handleChange}
         />
         <input
@@ -61,6 +62,7 @@ const SignIn = () => {
           placeholder="Password"
           className="border p-3 rounded-lg outline-none"
           id="password"
+          required
           onChange={handleChange}
         />
         <button
