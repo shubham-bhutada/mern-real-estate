@@ -1,15 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cookieParser = require('cookie-parser')
 
 //file import
 const authRouter = require("./routes/auth.route.js");
+const userRouter = require("./routes/user.route.js");
 
 const app = express();
 
 //middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //db connection
 mongoose
@@ -23,6 +25,7 @@ mongoose
 
 //middleware routes
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter)
 
 //error middleware
 app.use((err, req, res, next) => {
