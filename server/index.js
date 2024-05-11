@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 
 //file import
 const authRouter = require("./routes/auth.route.js");
 const userRouter = require("./routes/user.route.js");
+const listingRouter = require("./routes/listing.route.js");
 
 const app = express();
 
@@ -25,7 +26,8 @@ mongoose
 
 //middleware routes
 app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter)
+app.use("/api/user", userRouter);
+app.use("/api/listing", listingRouter);
 
 //error middleware
 app.use((err, req, res, next) => {
