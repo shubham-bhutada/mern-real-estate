@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth.route.js");
 const userRouter = require("./routes/user.route.js");
 const listingRouter = require("./routes/listing.route.js");
+const listRouter = require("./routes/list.route.js");
 
 const app = express();
 
@@ -28,6 +29,7 @@ mongoose
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/listing", listingRouter);
+app.use('/api/list', listRouter)
 
 //error middleware
 app.use((err, req, res, next) => {
