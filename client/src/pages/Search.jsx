@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../components/common/Loader";
+import ListingCard from "../components/ListingCard";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -47,13 +49,13 @@ const Search = () => {
     }
 
     const fetchListings = async () => {
-        setLoading(true);
-        const searchQuery = urlParams.toString();
-        const response = await fetch(`/api/list/get?${searchQuery}`);
-        const data = await response.json();
-        setListings(data);
-        setLoading(false);
-    }
+      setLoading(true);
+      const searchQuery = urlParams.toString();
+      const response = await fetch(`/api/list/get?${searchQuery}`);
+      const data = await response.json();
+      setListings(data);
+      setLoading(false);
+    };
 
     fetchListings();
   }, [location.search]);
@@ -208,6 +210,21 @@ const Search = () => {
         <h1 className="text-3xl font-semibold border-b text-slate-700">
           Listing Results
         </h1>
+        <div>
+          {loading && <Loader />}
+          {!loading && listings.length === 0 && (
+            <p className="text-xl text-slate-700 mt-5">
+              No listings available!
+            </p>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-4 md:gap-6 my-6 items-center justify-center md:justify-start">
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <ListingCard key={listing._id} listing={listing} />
+            ))}
+        </div>
       </div>
     </div>
   );
