@@ -32,7 +32,7 @@ const CreateListing = () => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+
   function handleImageSubmit(e) {
     if (files.length === 0) {
       setImageUploadError("Please select atleast one image");
@@ -123,7 +123,8 @@ const CreateListing = () => {
     try {
       if (formData.imageUrls.length < 1)
         return setError("You must upload atleast one image");
-
+      if (+formData.regularPrice < +formData.discountPrice)
+        return setError("Discount price must be lower than regular price");
       setLoading(true);
       setError(false);
       const response = await fetch("/api/listing/create", {
@@ -282,8 +283,8 @@ const CreateListing = () => {
               />
               <div className="flex flex-col items-center">
                 <p>Regular Price</p>
-                {formData.type === 'rent' && (
-                  <span className='text-xs'>(₹ / month)</span>
+                {formData.type === "rent" && (
+                  <span className="text-xs">(₹ / month)</span>
                 )}
               </div>
             </div>
@@ -301,8 +302,8 @@ const CreateListing = () => {
                 />
                 <div className="flex flex-col items-center">
                   <p>Discounted Price</p>
-                  {formData.type === 'rent' && (
-                    <span className='text-xs'>(₹ / month)</span>
+                  {formData.type === "rent" && (
+                    <span className="text-xs">(₹ / month)</span>
                   )}
                 </div>
               </div>
