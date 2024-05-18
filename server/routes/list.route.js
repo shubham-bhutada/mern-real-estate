@@ -6,6 +6,5 @@ const router = express.Router();
 
 router.get('/test', findAll)
 router.get("/get", getListings);
-router.get("/:id", getListing);
 
 module.exports = router;
