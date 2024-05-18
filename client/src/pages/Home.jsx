@@ -39,7 +39,6 @@ const Home = () => {
         const response = await fetch("/api/list/get?type=sale&limit=4");
         const data = await response.json();
         setSaleListings(data);
-        console.log(saleListings);
       } catch (error) {
         console.log(error);
       }
