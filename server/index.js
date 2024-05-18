@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config();
 const cookieParser = require("cookie-parser");
+import path from 'path';
+require("dotenv").config();
 
 //file import
 const authRouter = require("./routes/auth.route.js");
@@ -25,12 +26,19 @@ mongoose
     console.log(err);
   });
 
+  const __dirname = path.resolve();
+
 //middleware routes
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/listing", listingRouter);
 app.use('/api/list', listRouter)
 
+app.use(express.static(path.join(__dirname, '/client/dist')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+})
 //error middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
